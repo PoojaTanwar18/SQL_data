@@ -24,7 +24,66 @@ select truncate(12.111111,3);
 select mod(10,4);
 select floor(10/4);
 
+show databases;
 use class;
-create table student(id int primary key, name varchar(10) not null);
-show tables;
-desc student;
+create table user(uid int, uname varchar(20), primary key(uid));
+create table order12(oid int primary key, prod_name varchar(20), uid int , foreign key(uid) references user(uid));
+desc user;
+desc order12;
+insert into user values(1, 'abc'),(2,'xyz'),(3,'mmmm');
+select * from user;
+insert into order12 values(1, 'Shirt',1);
+select * from order12;
+insert into order12 values(2, 'books',1);
+insert into order12 values(3, 'notebooks',3);
+select user.uname, order12.prod_name from order12 inner join user on user.uid = order12.uid;
+select uname, prod_name from order12 inner join user on user.uid = order12.uid;
+
+insert into order12 values(101, 'apple', null),(102,'Mango',null),(103,'Cherry',null);
+select * from order12 inner join user on user.uid = order12.uid;
+
+select * from order12 where uid is null;
+select * from order12 where uid is not null;
+
+show databases;
+use class;
+create table student_data(
+id int primary key,
+department char(10) not null,
+student_name varchar(20) not null,
+student_marks int ,
+paid_fees float ,
+attendance int not null
+);
+
+desc student_data;
+select * from student_data;
+insert into student_data values
+(101 ,'FS' ,'minnie', 99.9, 100000, 99),
+(200 ,'DSAws' ,'Smile',89.3, 50000, 78),
+(11 ,'FS' ,'Hello', 79.9, 100000, 89),
+(121 ,'DSE' ,'Tanwar',99.3, 50000, 68),
+(111 ,'FS' ,'Pooja', 79.9, 100000, 99),
+(54 ,'DSE' ,'Luca',59.3, 25000, 56),
+(145 ,'FS' ,'frozen', 89.9, 100000, 69),
+(175 ,'FSaws' ,'megha',88.3, 15000, 78),
+(176 ,'FS' ,'drBanner', 70.9, 45000, 79),
+(189 ,'DSE' ,'ironmen',77.3, 50000, 78)
+;
+insert into student_data values(102 ,'FS' ,'christ', 35.9, 25000, 79),
+(201 ,'DSAws' ,'Smiley',49.3, 75000, 68),
+(211 ,'FS' ,'Kitty', 58.7, 100000, 69);
+select * from student_data;
+select id, department, student_name, student_marks,
+case
+when student_marks>=30 and student_marks<=60 then 'C Grade'
+when student_marks>60 and student_marks<80 then 'B Grade'
+when student_marks>=80 and student_marks<=100 then 'A Grade'
+end as result from student_data;
+-- for arranging it into desc order
+select id, department, student_name, student_marks,
+case
+when student_marks>=30 and student_marks<=60 then 'C Grade'
+when student_marks>60 and student_marks<80 then 'B Grade'
+when student_marks>=80 and student_marks<=100 then 'A Grade'
+end as result from student_data order by student_marks desc;
