@@ -87,3 +87,38 @@ when student_marks>=30 and student_marks<=60 then 'C Grade'
 when student_marks>60 and student_marks<80 then 'B Grade'
 when student_marks>=80 and student_marks<=100 then 'A Grade'
 end as result from student_data order by student_marks desc;
+
+use class;
+create table college(
+cid int primary key,
+cname varchar(30) not null,
+location varchar(10) not null
+);
+desc college;
+
+create table stu(
+sid int primary key,
+sname varchar(20) ,
+sage int ,
+scity varchar(10) ,
+cid int, 
+foreign key(cid) references college(cid)
+);
+desc stu;
+insert into college values(1, 'star','Thane'),(2, 'Moon', 'Wagle'),(3, 'Universe','Dadar'),(4, 'Heaven','CSMT');
+select * from college;
+insert into stu values
+(1, 'a',18, 'Thane',2),(2, 'b',19, 'Ahemdabad',3),(3, 'c',17, 'Dadar',1),
+(4, 'd',18, 'Hisar',4),(5, 'e',16, 'Diha',2),(6, 'f',17, 'Bhandup',3),
+(7, 'g',18, 'Thane',2),(8, 'h',19, 'Airoli',null),(9, 'i',17, 'Dadar',null),
+(10, 'j',16, 'Hisar',null),(11, 'k',18, 'Diha',null),(12, 'l',20,'Bhandup',4);
+select * from stu;
+
+select * from stu inner join college on stu.cid=college.cid;
+select * from college inner join stu on stu.cid=college.cid;
+
+
+select stu.sname, stu.scity as student_address, college.cname as college_name,
+college.location as college_address from college inner join stu on stu.cid=college.cid;
+
+insert into college  values(13,'LPU','Punjab');
