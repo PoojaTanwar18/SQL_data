@@ -122,3 +122,5 @@ select stu.sname, stu.scity as student_address, college.cname as college_name,
 college.location as college_address from college inner join stu on stu.cid=college.cid;
 
 insert into college  values(13,'LPU','Punjab');
+
+select * from stu natural join college;
