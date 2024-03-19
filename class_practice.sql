@@ -1,0 +1,30 @@
+select lower('MiNnIe');
+select lower('minnie');
+select upper('itvedant');
+select upper('itVedant');
+select concat('hello',' world');
+select replace('Welcome to Itvedant thane', 'thane', 'Mumbai');
+select replace('Welcome to Itvedant thane', 'e', 'i');
+select length('hello world');
+select length(trim('      abc      '));
+select length(trim('      abc   abc      '));
+select trim('      abc     ');
+select length(rtrim('      abc     '));
+select substr('My name is Minnie',12);
+-- math
+select abs(-11);
+select abs(-1.11);
+select ceil(12.1);
+select ceil(12.0);
+select round(12.1);
+select round(12.4);
+select round(12.5);
+select truncate(12.111111,1);
+select truncate(12.111111,3);
+select mod(10,4);
+select floor(10/4);
+
+use class;
+create table student(id int primary key, name varchar(10) not null);
+show tables;
+desc student;
